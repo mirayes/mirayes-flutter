@@ -131,10 +131,10 @@
       "name": "mirayes_flutter",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-03-30T14:41:11.118734Z",
+  "generated": "2021-03-30T17:33:01.959416Z",
   "generator": "pub",
   "generatorVersion": "2.13.0-116.0.dev"
 }
