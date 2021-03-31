@@ -1,25 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mirayes_flutter/mirayes_flutter.dart';
+import 'package:mirayes_flutter/widgets/typographies/h1.dart';
 
 class MirayesLoginScaffold1 extends StatefulWidget {
+  final MirayesConstants constants;
   final String title;
   final String subTitle;
 
   final String labelLogin;
   final String labelSenha;
+  final String labelEsqueceu;
 
-  const MirayesLoginScaffold1(
-      {Key? key,
-      required this.title,
-      this.subTitle = '',
-      this.labelLogin = 'E-mail',
-      this.labelSenha = 'Senha'})
-      : super(key: key);
+  final TextEditingController loginController;
+  final TextEditingController senhaController;
+  final onSubmit;
+
+  const MirayesLoginScaffold1({
+    Key? key,
+    required this.constants,
+    required this.title,
+    required this.onSubmit,
+    required this.loginController,
+    required this.senhaController,
+    this.subTitle = '',
+    this.labelLogin = 'E-mail',
+    this.labelSenha = 'Senha',
+    this.labelEsqueceu = '',
+  }) : super(key: key);
 
   @override
   _MirayesLoginScaffold1State createState() => _MirayesLoginScaffold1State();
 }
 
 class _MirayesLoginScaffold1State extends State<MirayesLoginScaffold1> {
+  final _formKey = GlobalKey<FormState>();
+
+  double getCardWidth(BuildContext context) {
+    if (Responsive.isMobile(context)) {
+      return 0.0;
+    } else if (Responsive.isTablet(context)) {
+      return MediaQuery.of(context).size.width * 0.1;
+    } else if (Responsive.isDesktop(context)) {
+      return MediaQuery.of(context).size.width * 0.25;
+    } else {
+      return 0.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,21 +74,17 @@ class _MirayesLoginScaffold1State extends State<MirayesLoginScaffold1> {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding: EdgeInsets.symmetric(
                     vertical: 36.0,
-                    horizontal: 24.0,
+                    horizontal: getCardWidth(context) + 24.0,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.title,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 46.0,
-                          fontWeight: FontWeight.w800,
-                        ),
+                      MirayesTypographyH1(
+                        text: widget.title,
+                        color: Colors.white,
                       ),
                       SizedBox(
                         height: 10.0,
@@ -80,6 +104,8 @@ class _MirayesLoginScaffold1State extends State<MirayesLoginScaffold1> {
               Expanded(
                 flex: 5,
                 child: Container(
+                  margin:
+                      EdgeInsets.symmetric(horizontal: getCardWidth(context)),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -90,76 +116,84 @@ class _MirayesLoginScaffold1State extends State<MirayesLoginScaffold1> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFe7edeb),
-                            hintText: widget.labelLogin,
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.grey,
-                            ),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // =====================================
+                          // = LOGIN
+                          // =====================================
+                          InputField(
+                            constants: widget.constants,
+                            label: widget.labelLogin,
+                            icon: Icons.email,
+                            controller: widget.loginController,
                           ),
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFe7edeb),
-                            hintText: widget.labelSenha,
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              color: Colors.grey,
-                            ),
+                          SizedBox(
+                            height: 20.0,
                           ),
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              "Forget yout password?",
-                              style: TextStyle(
-                                color: Colors.blue[800],
-                                decoration: TextDecoration.underline,
+                          // =====================================
+                          // = SENHA
+                          // =====================================
+                          InputField(
+                            constants: widget.constants,
+                            label: widget.labelSenha,
+                            icon: Icons.lock,
+                            isPassword: true,
+                            controller: widget.senhaController,
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          if (widget.labelEsqueceu.isNotEmpty)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  widget.labelEsqueceu,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Theme.of(context).primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      widget.constants.buttonBorderRadius,
+                                ),
+                              ),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  widget.onSubmit();
+                                } else {
+                                  Get.snackbar(
+                                    'Opsss !!!',
+                                    'Todos os campos são obrigatórios.',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16.0,
+                                ),
+                                child: Text("Login"),
                               ),
                             ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 16.0,
-                              ),
-                              child: Text("Login"),
-                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -168,6 +202,65 @@ class _MirayesLoginScaffold1State extends State<MirayesLoginScaffold1> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class InputField extends StatefulWidget {
+  final constants;
+  final label;
+  final icon;
+  final isPassword;
+  final controller;
+
+  InputField(
+      {Key? key,
+      required this.constants,
+      required this.label,
+      required this.icon,
+      required this.controller,
+      this.isPassword = false})
+      : super(key: key);
+  @override
+  _InputFieldState createState() => _InputFieldState();
+}
+
+class _InputFieldState extends State<InputField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget.controller,
+      keyboardType: TextInputType.emailAddress,
+      obscureText: widget.isPassword,
+      autofocus: true,
+      cursorColor: Theme.of(context).primaryColor,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: widget.constants.inputBorderRadius,
+          borderSide: BorderSide.none,
+        ),
+        filled: true,
+        fillColor: Color(0xFFe7edeb),
+        focusColor: Theme.of(context).primaryColor,
+        hintText: widget.label,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: widget.constants.inputBorderRadius,
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        prefixIcon: Icon(
+          widget.icon,
+          color: Colors.grey,
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Campo obrigatório.';
+        }
+        return null;
+      },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
 }
