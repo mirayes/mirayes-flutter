@@ -31,6 +31,16 @@ class MirayesMenusController extends GetxController {
     return destinations[index].body;
   }
 
+  Widget getPageByRoute(String route) {
+    AdaptiveScaffoldDestination destinofinal = destinations.first;
+    destinations.forEach((destino) {
+      if (destino.route == route) {
+        destinofinal = destino;
+      }
+    });
+    return destinofinal.body;
+  }
+
   void goToMenu(int index) async {
     await Get.offAllNamed(destinations[index].route);
   }
