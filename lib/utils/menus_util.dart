@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AdaptiveScaffoldDestination {
-  final String title;
+  final String menuTitle;
+  final String pageTitle;
   final IconData icon;
   final String route;
   final Widget body;
 
   const AdaptiveScaffoldDestination({
-    required this.title,
+    required this.menuTitle,
+    required this.pageTitle,
     required this.icon,
     required this.route,
     required this.body,

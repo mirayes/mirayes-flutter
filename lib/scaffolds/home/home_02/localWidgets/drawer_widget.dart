@@ -40,6 +40,21 @@ class _DrawerLocalState extends State<DrawerLocal> {
       }
     }
 
+    Color textColor() {
+      bool isDark = Theme.of(context).brightness == Brightness.dark;
+      return isDark ? HexColor.fromHex('#818fa9') : HexColor.fromHex('#000000');
+    }
+
+    Color borderBottomColor() {
+      bool isDark = Theme.of(context).brightness == Brightness.dark;
+      return isDark ? HexColor.fromHex('#262c38') : HexColor.fromHex('#cccccc');
+    }
+
+    Color selectedIconColor() {
+      bool isDark = Theme.of(context).brightness == Brightness.dark;
+      return isDark ? Colors.white : HexColor.fromHex('#000000');
+    }
+
     return Drawer(
       child: ListView(
         children: [
@@ -55,18 +70,32 @@ class _DrawerLocalState extends State<DrawerLocal> {
                 border: Border(
                   bottom: BorderSide(
                     width: 1.0,
-                    color: Colors.grey.shade200,
+                    color: borderBottomColor(),
                   ),
+                  left: _isSelected(d)
+                      ? BorderSide(
+                          width: 4.0,
+                          color: Theme.of(context).primaryColor,
+                        )
+                      : BorderSide(
+                          width: 4.0,
+                          color: Colors.transparent,
+                        ),
                 ),
               ),
               child: ListTileTheme(
-                selectedColor: Theme.of(context).primaryColor,
+                selectedColor: textColor(),
+                textColor: textColor(),
+                iconColor: textColor(),
                 child: ListTile(
-                    leading: Icon(d.icon),
-                    title: Text(d.title),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 24),
-                    trailing: _isSelected(d) ? Icon(Icons.done) : Text(''),
+                    leading: Icon(
+                      d.icon,
+                      color: _isSelected(d) ? selectedIconColor() : textColor(),
+                    ),
+                    title: Text(d.menuTitle),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
                     selected: _isSelected(d),
+                    selectedTileColor: borderBottomColor(),
                     onTap: () => _destinationTapped(d)),
               ),
             ),

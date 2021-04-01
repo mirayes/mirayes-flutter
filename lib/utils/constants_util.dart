@@ -14,15 +14,17 @@ class MirayesConstants {
   ///
   final brightness = Brightness.light;
   //- LIGHT
-  final lightPrimaryColor = Colors.indigoAccent;
-  final lightTextColor = Color(0xFF191919);
-  final lightBodyBackgroundColor = Color(0xFFE7E7E7);
-  final lightHeaderBackgroundColor = Color(0xFF191919);
+  final lightPrimaryColor = HexColor.fromHex('#1483ff');
+  final lightTextColor = HexColor.fromHex('#000000');
+  final lightBodyBackgroundColor = HexColor.fromHex('#fefefe');
+  final lightHeaderBackgroundColor = HexColor.fromHex('#1483ff');
+  final lightMenuBackgroundColor = HexColor.fromHex('#ffffff');
   //- DARK
-  final darkPrimaryColor = Colors.indigo;
-  final darkTextColor = HexColor.fromHex('#cdd9e5');
-  final darkBodyBackgroundColor = HexColor.fromHex('#1c2128');
-  final darkHeaderBackgroundColor = HexColor.fromHex('#1c2128');
+  final darkPrimaryColor = HexColor.fromHex('#1483ff');
+  final darkTextColor = HexColor.fromHex('#9c9c9c');
+  final darkBodyBackgroundColor = HexColor.fromHex('#12141a');
+  final darkHeaderBackgroundColor = HexColor.fromHex('#212631');
+  final darkMenuBackgroundColor = HexColor.fromHex('#1c2029');
 
   get primaryColor =>
       brightness == Brightness.light ? lightPrimaryColor : darkPrimaryColor;
@@ -34,6 +36,9 @@ class MirayesConstants {
   get headerBackgroundColor => brightness == Brightness.light
       ? lightHeaderBackgroundColor
       : darkHeaderBackgroundColor;
+  get menuBackgroundColor => brightness == Brightness.light
+      ? lightMenuBackgroundColor
+      : darkMenuBackgroundColor;
 
   /// //////////////////////////////////////
   ///
@@ -64,6 +69,8 @@ class MirayesConstants {
           bodyText2: TextStyle(color: textColor),
           headline5: TextStyle(color: darkTextColor),
         ),
+        appBarTheme: AppBarTheme(backgroundColor: headerBackgroundColor),
+        canvasColor: menuBackgroundColor,
       );
 }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mirayes_flutter/mirayes_flutter.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
+import 'package:mirayes_flutter/widgets/typographies/title.dart';
 
 import 'drawer_widget.dart';
 
@@ -48,7 +50,14 @@ class _MirayesHomeScaffold02LargeState
               child: Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Column(
-                  children: [widget.screenPage],
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MirayesTypographTitle(
+                      title: widget.destinations[widget.currentIndex].pageTitle,
+                    ),
+                    widget.screenPage,
+                  ],
                 ),
               ),
             )
