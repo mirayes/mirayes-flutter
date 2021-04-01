@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mirayes_flutter/mirayes_flutter.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
 
+import 'localWidgets/medium_scaffold.dart';
 import 'localWidgets/small_scaffold.dart';
 import 'localWidgets/large_scaffold.dart';
 
@@ -32,6 +33,17 @@ class _MirayesHomeScaffold02State extends State<MirayesHomeScaffold02> {
   Widget build(BuildContext context) {
     if (Responsive.isMobile(context)) {
       return MirayesHomeScaffold02Small(
+        screenPage: widget.screenPage,
+        actions: widget.actions,
+        currentIndex: widget.currentIndex,
+        destinations: widget.destinations,
+        onNavigationIndexChange: widget.onNavigationIndexChange,
+        title: widget.title,
+      );
+    }
+
+    if (Responsive.isTablet(context)) {
+      return MirayesHomeScaffold02Medium(
         screenPage: widget.screenPage,
         actions: widget.actions,
         currentIndex: widget.currentIndex,

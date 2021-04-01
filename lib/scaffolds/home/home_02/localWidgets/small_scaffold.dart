@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
 
+import 'body_widget.dart';
 import 'drawer_widget.dart';
 
 class MirayesHomeScaffold02Small extends StatefulWidget {
@@ -31,7 +32,14 @@ class _MirayesHomeScaffold02SmallState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.screenPage,
+      body: BodyWidget(
+        screenPage: widget.screenPage,
+        actions: widget.actions,
+        currentIndex: widget.currentIndex,
+        destinations: widget.destinations,
+        onNavigationIndexChange: widget.onNavigationIndexChange,
+        title: widget.title,
+      ),
       appBar: AppBar(
         title: widget.title,
         actions: widget.actions,
@@ -46,12 +54,5 @@ class _MirayesHomeScaffold02SmallState
         showDrawerHeader: true,
       ),
     );
-  }
-
-  void _destinationTapped(AdaptiveScaffoldDestination destination) {
-    var idx = widget.destinations.indexOf(destination);
-    if (idx != widget.currentIndex) {
-      widget.onNavigationIndexChange(idx);
-    }
   }
 }

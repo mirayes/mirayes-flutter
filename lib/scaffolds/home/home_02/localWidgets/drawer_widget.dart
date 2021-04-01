@@ -55,51 +55,67 @@ class _DrawerLocalState extends State<DrawerLocal> {
       return isDark ? Colors.white : HexColor.fromHex('#000000');
     }
 
-    return Drawer(
-      child: ListView(
-        children: [
-          if (widget.showDrawerHeader)
-            DrawerHeader(
-              child: Center(
-                child: widget.title,
-              ),
-            ),
-          for (var d in widget.destinations)
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 1.0,
-                    color: borderBottomColor(),
-                  ),
-                  left: _isSelected(d)
-                      ? BorderSide(
-                          width: 4.0,
-                          color: Theme.of(context).primaryColor,
-                        )
-                      : BorderSide(
-                          width: 4.0,
-                          color: Colors.transparent,
-                        ),
+    bool isRail() {
+      if (Responsive.isTablet(context)) {
+        return true;
+      }
+      return false;
+    }
+
+    return Container(
+      constraints: isRail()
+          ? BoxConstraints(
+              maxWidth: 50,
+            )
+          : BoxConstraints(),
+      child: Drawer(
+        child: ListView(
+          children: [
+            if (widget.showDrawerHeader)
+              DrawerHeader(
+                margin: EdgeInsets.zero,
+                child: Center(
+                  child: widget.title,
                 ),
               ),
-              child: ListTileTheme(
-                selectedColor: textColor(),
-                textColor: textColor(),
-                iconColor: textColor(),
-                child: ListTile(
-                    leading: Icon(
-                      d.icon,
-                      color: _isSelected(d) ? selectedIconColor() : textColor(),
+            for (var d in widget.destinations)
+              Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1.0,
+                      color: borderBottomColor(),
                     ),
-                    title: Text(d.menuTitle),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    selected: _isSelected(d),
-                    selectedTileColor: borderBottomColor(),
-                    onTap: () => _destinationTapped(d)),
+                    left: _isSelected(d)
+                        ? BorderSide(
+                            width: 4.0,
+                            color: Theme.of(context).primaryColor,
+                          )
+                        : BorderSide(
+                            width: 4.0,
+                            color: Colors.transparent,
+                          ),
+                  ),
+                ),
+                child: ListTileTheme(
+                  selectedColor: textColor(),
+                  textColor: textColor(),
+                  iconColor: textColor(),
+                  child: ListTile(
+                      leading: Icon(
+                        d.icon,
+                        color:
+                            _isSelected(d) ? selectedIconColor() : textColor(),
+                      ),
+                      title: isRail() ? Text('') : Text(d.menuTitle),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      selected: _isSelected(d),
+                      selectedTileColor: borderBottomColor(),
+                      onTap: () => _destinationTapped(d)),
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

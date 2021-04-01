@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mirayes_flutter/mirayes_flutter.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
-import 'package:mirayes_flutter/widgets/typographies/title.dart';
 
 import 'body_widget.dart';
 import 'drawer_widget.dart';
 
-class MirayesHomeScaffold02Large extends StatefulWidget {
+class MirayesHomeScaffold02Medium extends StatefulWidget {
   final Widget title;
   final Widget screenPage;
   final List<Widget> actions;
@@ -14,7 +12,7 @@ class MirayesHomeScaffold02Large extends StatefulWidget {
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
 
-  const MirayesHomeScaffold02Large({
+  const MirayesHomeScaffold02Medium({
     Key? key,
     required this.screenPage,
     this.actions = const [],
@@ -25,12 +23,12 @@ class MirayesHomeScaffold02Large extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MirayesHomeScaffold02LargeState createState() =>
-      _MirayesHomeScaffold02LargeState();
+  _MirayesHomeScaffold02MediumState createState() =>
+      _MirayesHomeScaffold02MediumState();
 }
 
-class _MirayesHomeScaffold02LargeState
-    extends State<MirayesHomeScaffold02Large> {
+class _MirayesHomeScaffold02MediumState
+    extends State<MirayesHomeScaffold02Medium> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
