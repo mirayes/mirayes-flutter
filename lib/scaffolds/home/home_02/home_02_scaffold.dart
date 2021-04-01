@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mirayes_flutter/mirayes_flutter.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
+
+import 'localWidgets/small_scaffold.dart';
+import 'localWidgets/large_scaffold.dart';
 
 class MirayesHomeScaffold02 extends StatefulWidget {
   final Widget title;
@@ -26,37 +30,35 @@ class MirayesHomeScaffold02 extends StatefulWidget {
 class _MirayesHomeScaffold02State extends State<MirayesHomeScaffold02> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: widget.screenPage,
-      appBar: AppBar(
-        title: widget.title,
+    if (Responsive.isMobile(context)) {
+      return MirayesHomeScaffold02Small(
+        screenPage: widget.screenPage,
         actions: widget.actions,
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            DrawerHeader(
-              child: Center(
-                child: widget.title,
-              ),
-            ),
-            for (var d in widget.destinations)
-              ListTile(
-                leading: Icon(d.icon),
-                title: Text(d.title),
-                selected: widget.destinations.indexOf(d) == widget.currentIndex,
-                onTap: () => _destinationTapped(d),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _destinationTapped(AdaptiveScaffoldDestination destination) {
-    var idx = widget.destinations.indexOf(destination);
-    if (idx != widget.currentIndex) {
-      widget.onNavigationIndexChange(idx);
+        currentIndex: widget.currentIndex,
+        destinations: widget.destinations,
+        onNavigationIndexChange: widget.onNavigationIndexChange,
+        title: widget.title,
+      );
     }
+
+    if (Responsive.isDesktop(context)) {
+      return MirayesHomeScaffold02Large(
+        screenPage: widget.screenPage,
+        actions: widget.actions,
+        currentIndex: widget.currentIndex,
+        destinations: widget.destinations,
+        onNavigationIndexChange: widget.onNavigationIndexChange,
+        title: widget.title,
+      );
+    }
+
+    return MirayesHomeScaffold02Small(
+      screenPage: widget.screenPage,
+      actions: widget.actions,
+      currentIndex: widget.currentIndex,
+      destinations: widget.destinations,
+      onNavigationIndexChange: widget.onNavigationIndexChange,
+      title: widget.title,
+    );
   }
 }
