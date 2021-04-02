@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mirayes_flutter/mirayes_flutter.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
-import 'package:mirayes_flutter/widgets/typographies/title.dart';
 
 import 'body_widget.dart';
 import 'drawer_widget.dart';

@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   get: 4.1.1
+  flutter_vector_icons:
+  google_fonts:
 
 dev_dependencies:
   flutter_test:

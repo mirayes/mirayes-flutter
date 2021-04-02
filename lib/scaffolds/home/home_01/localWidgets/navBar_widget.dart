@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import 'navBarItem_widget.dart';
+
+class NavBar extends StatefulWidget {
+  const NavBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _NavBarState createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  List<bool> selected = [true, false, false, false, false];
+
+  void select(int n) {
+    for (int i = 0; i < 5; i++) {
+      if (i != n) {
+        selected[i] = false;
+      } else {
+        selected[i] = true;
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 350.0,
+      child: Column(
+        children: [
+          NavBarItem(
+            icon: Feather.home,
+            touched: () {
+              setState(() {
+                select(0);
+              });
+            },
+            active: selected[0],
+          ),
+          NavBarItem(
+            icon: Feather.list,
+            active: selected[1],
+            touched: () {
+              setState(() {
+                select(1);
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
