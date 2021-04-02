@@ -14,6 +14,7 @@ class MirayesHomeScaffold01 extends StatefulWidget {
   final int currentIndex;
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
+  final MirayesThemeController themeController;
 
   const MirayesHomeScaffold01({
     Key? key,
@@ -23,6 +24,7 @@ class MirayesHomeScaffold01 extends StatefulWidget {
     required this.currentIndex,
     required this.destinations,
     required this.onNavigationIndexChange,
+    required this.themeController,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
   @override
   Widget build(BuildContext context) {
     controller.home01ControllerInit(context);
+    widget.themeController.init(context);
 
     return Scaffold(
       body: SafeArea(
@@ -51,6 +54,7 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
                   destinations: widget.destinations,
                   onNavigationIndexChange: widget.onNavigationIndexChange,
                   title: widget.title,
+                  themeController: widget.themeController,
                 ),
                 MainContainer(
                   screenPage: widget.screenPage,

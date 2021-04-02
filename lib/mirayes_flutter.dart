@@ -13,6 +13,7 @@ export 'scaffolds/home/home_02/home_02_scaffold.dart';
 export 'utils/responsive_util.dart';
 export 'utils/constants_util.dart';
 export 'utils/menus_util.dart';
+export 'utils/theme_util.dart';
 
 /// ///////////////////////////////////////
 ///

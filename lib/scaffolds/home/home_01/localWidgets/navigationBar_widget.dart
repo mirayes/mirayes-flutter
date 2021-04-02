@@ -12,6 +12,7 @@ class NavigationBarWidget extends StatefulWidget {
   final int currentIndex;
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
+  final MirayesThemeController themeController;
 
   const NavigationBarWidget({
     Key? key,
@@ -21,6 +22,7 @@ class NavigationBarWidget extends StatefulWidget {
     required this.currentIndex,
     required this.destinations,
     required this.onNavigationIndexChange,
+    required this.themeController,
   }) : super(key: key);
 
   @override
@@ -35,7 +37,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: 100.0,
-        color: Color(0xff333951),
+        color: widget.themeController.primaryColor,
         child: Stack(
           children: [
             CompanyNameWidget(),

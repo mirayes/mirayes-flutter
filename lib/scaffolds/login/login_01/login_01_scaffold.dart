@@ -169,8 +169,7 @@ class _MirayesLoginScaffold1State extends State<MirayesLoginScaffold1> {
                               style: ElevatedButton.styleFrom(
                                 primary: Theme.of(context).primaryColor,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      widget.constants.buttonBorderRadius,
+                                  borderRadius: BorderRadius.circular(40.0),
                                 ),
                               ),
                               onPressed: () {
@@ -236,7 +235,7 @@ class _InputFieldState extends State<InputField> {
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderRadius: widget.constants.inputBorderRadius,
+          borderRadius: BorderRadius.circular(40.0),
           borderSide: BorderSide.none,
         ),
         filled: true,
@@ -244,7 +243,7 @@ class _InputFieldState extends State<InputField> {
         focusColor: Theme.of(context).primaryColor,
         hintText: widget.label,
         focusedBorder: OutlineInputBorder(
-          borderRadius: widget.constants.inputBorderRadius,
+          borderRadius: BorderRadius.circular(40.0),
           borderSide: BorderSide(
             color: Theme.of(context).primaryColor,
           ),
