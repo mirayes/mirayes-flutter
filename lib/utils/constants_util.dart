@@ -15,19 +15,23 @@ class MirayesConstants {
   final brightness = Brightness.light;
   //- LIGHT
   final lightPrimaryColor = HexColor.fromHex('#1483ff');
+  final lightAccentColor = HexColor.fromHex('#1483ff');
   final lightTextColor = HexColor.fromHex('#000000');
   final lightBodyBackgroundColor = HexColor.fromHex('#fefefe');
   final lightHeaderBackgroundColor = HexColor.fromHex('#1483ff');
   final lightMenuBackgroundColor = HexColor.fromHex('#ffffff');
   //- DARK
-  final darkPrimaryColor = HexColor.fromHex('#1483ff');
-  final darkTextColor = HexColor.fromHex('#9c9c9c');
-  final darkBodyBackgroundColor = HexColor.fromHex('#12141a');
-  final darkHeaderBackgroundColor = HexColor.fromHex('#212631');
-  final darkMenuBackgroundColor = HexColor.fromHex('#1c2029');
+  final darkPrimaryColor = HexColor.fromHex('#1483ff'); // Primary
+  final darkAccentColor = HexColor.fromHex('#ffffff'); // Primary
+  final darkTextColor = HexColor.fromHex('#9c9c9c'); // Text
+  final darkBodyBackgroundColor = HexColor.fromHex('#12141a'); // Body
+  final darkHeaderBackgroundColor = HexColor.fromHex('#212631'); // Header
+  final darkMenuBackgroundColor = HexColor.fromHex('#1c2029'); // Menu
 
   get primaryColor =>
       brightness == Brightness.light ? lightPrimaryColor : darkPrimaryColor;
+  get accentColor =>
+      brightness == Brightness.light ? lightAccentColor : darkAccentColor;
   get textColor =>
       brightness == Brightness.light ? lightTextColor : darkTextColor;
   get backgroundColor => brightness == Brightness.light
@@ -59,6 +63,7 @@ class MirayesConstants {
   ///
   get themeData => ThemeData(
         primaryColor: primaryColor,
+        accentColor: accentColor,
         brightness: brightness,
         scaffoldBackgroundColor: backgroundColor,
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -71,6 +76,7 @@ class MirayesConstants {
         ),
         appBarTheme: AppBarTheme(backgroundColor: headerBackgroundColor),
         canvasColor: menuBackgroundColor,
+        // highlightColor: Colors.pink,
       );
 }
 

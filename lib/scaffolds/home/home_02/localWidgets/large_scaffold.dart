@@ -47,13 +47,15 @@ class _MirayesHomeScaffold02LargeState
               onNavigationIndexChange: widget.onNavigationIndexChange,
               title: widget.title,
             ),
-            BodyWidget(
-              screenPage: widget.screenPage,
-              actions: widget.actions,
-              currentIndex: widget.currentIndex,
-              destinations: widget.destinations,
-              onNavigationIndexChange: widget.onNavigationIndexChange,
-              title: widget.title,
+            Expanded(
+              child: BodyWidget(
+                screenPage: widget.screenPage,
+                actions: widget.actions,
+                currentIndex: widget.currentIndex,
+                destinations: widget.destinations,
+                onNavigationIndexChange: widget.onNavigationIndexChange,
+                title: widget.title,
+              ),
             )
           ],
         ),

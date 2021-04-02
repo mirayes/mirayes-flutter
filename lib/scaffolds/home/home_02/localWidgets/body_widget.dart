@@ -34,18 +34,20 @@ class _BodyWidgetState extends State<BodyWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MirayesTypographTitle(
-                  title: widget.destinations[widget.currentIndex].pageTitle,
-                ),
-                widget.screenPage,
-              ],
+        Expanded(
+          child: Container(
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MirayesTypographTitle(
+                    title: widget.destinations[widget.currentIndex].pageTitle,
+                  ),
+                  widget.screenPage,
+                ],
+              ),
             ),
           ),
         ),
