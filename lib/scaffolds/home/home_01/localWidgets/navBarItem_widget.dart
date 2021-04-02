@@ -20,7 +20,6 @@ class _NavBarItemState extends State<NavBarItem> {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          print(widget.icon);
           widget.touched();
         },
         splashColor: Colors.white,

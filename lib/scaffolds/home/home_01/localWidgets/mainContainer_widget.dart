@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mirayes_flutter/mirayes_flutter.dart';
+import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
 
 class MainContainer extends StatefulWidget {
@@ -24,20 +27,53 @@ class MainContainer extends StatefulWidget {
 }
 
 class _MainContainerState extends State<MainContainer> {
+  Home01Controller controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
       left: 100.0,
       child: Container(
         height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width * 0.7 - 100,
+        width: controller.calcWidthMainContainer(context),
         color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Container(
-              width: double.infinity,
-              child: widget.screenPage,
+            if (!controller.rightSideOpened)
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  margin: EdgeInsets.only(
+                    bottom: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0xff333951),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      bottomLeft: Radius.circular(40),
+                    ),
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      controller.toggleRightSideOpened();
+                    },
+                    icon: Icon(
+                      Icons.arrow_left_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  child: widget.screenPage,
+                ),
+              ],
             ),
           ],
         ),

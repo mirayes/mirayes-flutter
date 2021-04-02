@@ -20,9 +20,32 @@ class AdaptiveScaffoldDestination {
 class MirayesMenusController extends GetxController {
   List<AdaptiveScaffoldDestination> get destinations => [];
 
+  final _wasInit = false.obs;
+  get wasInit => this._wasInit.value;
+  set wasInit(value) => this._wasInit.value = value;
+
   final _pageIndex = 0.obs;
   get pageIndex => this._pageIndex.value;
   set pageIndex(value) => this._pageIndex.value = value;
+
+  void controllerInit(BuildContext context) {
+    if (!wasInit) {
+      wasInit = true;
+      String currentRouteName = ModalRoute.of(context)!.settings.name!;
+      if (currentRouteName.isNotEmpty) {
+        AdaptiveScaffoldDestination destinoAtual = destinations
+            .firstWhere((element) => element.route == currentRouteName);
+
+        int index = 0;
+        destinations.forEach((element) {
+          if (element.route == destinoAtual.route) {
+            pageIndex = index;
+          }
+          index++;
+        });
+      }
+    }
+  }
 
   void onNavigationIndexChange(value) {
     pageIndex = value;
