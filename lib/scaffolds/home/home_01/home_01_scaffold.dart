@@ -35,11 +35,24 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: Colors.blueGrey,
           child: Stack(
             children: [
-              NavigationBarWidget(),
-              MainContainer(),
+              NavigationBarWidget(
+                screenPage: widget.screenPage,
+                actions: widget.actions,
+                currentIndex: widget.currentIndex,
+                destinations: widget.destinations,
+                onNavigationIndexChange: widget.onNavigationIndexChange,
+                title: widget.title,
+              ),
+              MainContainer(
+                screenPage: widget.screenPage,
+                actions: widget.actions,
+                currentIndex: widget.currentIndex,
+                destinations: widget.destinations,
+                onNavigationIndexChange: widget.onNavigationIndexChange,
+                title: widget.title,
+              ),
               RightSideContainer(),
             ],
           ),

@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:mirayes_flutter/utils/menus_util.dart';
 
-class MainContainer extends StatelessWidget {
+class MainContainer extends StatefulWidget {
+  final Widget title;
+  final Widget screenPage;
+  final List<Widget> actions;
+  final int currentIndex;
+  final List<AdaptiveScaffoldDestination> destinations;
+  final ValueChanged<int> onNavigationIndexChange;
+
   const MainContainer({
     Key? key,
+    required this.screenPage,
+    this.actions = const [],
+    this.title = const Text(''),
+    required this.currentIndex,
+    required this.destinations,
+    required this.onNavigationIndexChange,
   }) : super(key: key);
 
+  @override
+  _MainContainerState createState() => _MainContainerState();
+}
+
+class _MainContainerState extends State<MainContainer> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -18,7 +37,7 @@ class MainContainer extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              child: Text(''),
+              child: widget.screenPage,
             ),
           ],
         ),
