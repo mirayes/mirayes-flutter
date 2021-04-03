@@ -39,10 +39,10 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
     controller.home01ControllerInit(context);
     widget.themeController.init(context);
 
-    return Scaffold(
-      body: SafeArea(
-        child: Obx(
-          () => Container(
+    return Obx(
+      () => Scaffold(
+        body: SafeArea(
+          child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Stack(
@@ -63,8 +63,12 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
                   destinations: widget.destinations,
                   onNavigationIndexChange: widget.onNavigationIndexChange,
                   title: widget.title,
+                  themeController: widget.themeController,
                 ),
-                if (controller.rightSideOpened) RightSideContainer(),
+                if (controller.rightSideOpened)
+                  RightSideContainer(
+                    themeController: widget.themeController,
+                  ),
               ],
             ),
           ),

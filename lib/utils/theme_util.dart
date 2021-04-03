@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mirayes_flutter/mirayes_flutter.dart';
 
 class MirayesThemeController extends GetxController {
   final _wasInit = false.obs;
   set wasInit(value) => this._wasInit.value = value;
   get wasInit => this._wasInit.value;
 
-  final _brightness = Brightness.light.obs;
+  final _brightness = Brightness.dark.obs;
   get brightness => this._brightness.value;
   set brightness(value) => this._brightness.value = value;
 
@@ -17,12 +18,12 @@ class MirayesThemeController extends GetxController {
   /// ////////////////////////////////////////////////////////
 
   /// LIGHT - PRIMARY COLOR
-  final Rx<Color> _lightPrimaryColor = Colors.indigo.shade700.obs;
+  final Rx<Color> _lightPrimaryColor = Color(0xff333951).obs;
   Color get lightPrimaryColor => this._lightPrimaryColor.value;
   set lightPrimaryColor(value) => this._lightPrimaryColor.value = value;
 
   /// LIGHT - ACCENT COLOR
-  final Rx<Color> _lightAccentColor = Colors.yellow.shade700.obs;
+  final Rx<Color> _lightAccentColor = Color(0xff333951).obs;
   Color get lightAccentColor => this._lightAccentColor.value;
   set lightAccentColor(value) => this._lightAccentColor.value = value;
 
@@ -32,8 +33,15 @@ class MirayesThemeController extends GetxController {
   set lightBodyBackgroundColor(value) =>
       this._lightBodyBackgroundColor.value = value;
 
+  /// LIGHT - BODY BACKGROUND 02 COLOR
+  final Rx<Color> _lightBodyBackground02Color = HexColor.fromHex('#e6e6e6').obs;
+  Color get lightBodyBackground02Color =>
+      this._lightBodyBackground02Color.value;
+  set lightBodyBackground02Color(value) =>
+      this._lightBodyBackground02Color.value = value;
+
   /// LIGHT - TEXT BODY 01 COLOR
-  final Rx<Color> _lightBodyText01Color = Colors.black.obs;
+  final Rx<Color> _lightBodyText01Color = Color(0xff333951).obs;
   Color get lightBodyText01Color => this._lightBodyText01Color.value;
   set lightBodyText01Color(value) => this._lightBodyText01Color.value = value;
 
@@ -45,7 +53,7 @@ class MirayesThemeController extends GetxController {
       this._lightHeaderBackgroundColor.value = value;
 
   /// LIGHT - MENU BACKGROUND COLOR
-  final Rx<Color> _lightMenuBackgroundColor = Colors.black.obs;
+  final Rx<Color> _lightMenuBackgroundColor = Color(0xff333951).obs;
   Color get lightMenuBackgroundColor => this._lightMenuBackgroundColor.value;
   set lightMenuBackgroundColor(value) =>
       this._lightMenuBackgroundColor.value = value;
@@ -67,13 +75,19 @@ class MirayesThemeController extends GetxController {
   set darkAccentColor(value) => this._darkAccentColor.value = value;
 
   /// DARK - BODY BACKGROUND COLOR
-  final Rx<Color> _darkBodyBackgroundColor = Colors.grey.shade700.obs;
+  final Rx<Color> _darkBodyBackgroundColor = HexColor.fromHex('#1f1f2e').obs;
   Color get darkBodyBackgroundColor => this._darkBodyBackgroundColor.value;
   set darkBodyBackgroundColor(value) =>
       this._darkBodyBackgroundColor.value = value;
 
+  /// DARK - BODY BACKGROUND 02 COLOR
+  final Rx<Color> _darkBodyBackground02Color = HexColor.fromHex('#33334d').obs;
+  Color get darkBodyBackground02Color => this._darkBodyBackground02Color.value;
+  set darkBodyBackground02Color(value) =>
+      this._darkBodyBackground02Color.value = value;
+
   /// DARK - TEXT BODY 01 COLOR
-  final Rx<Color> _darkBodyText01Color = Colors.black.obs;
+  final Rx<Color> _darkBodyText01Color = Colors.white.obs;
   Color get darkBodyText01Color => this._darkBodyText01Color.value;
   set darkBodyText01Color(value) => this._darkBodyText01Color.value = value;
 
@@ -84,7 +98,7 @@ class MirayesThemeController extends GetxController {
       this._darkHeaderBackgroundColor.value = value;
 
   /// DARK - MENU BACKGROUND COLOR
-  final Rx<Color> _darkMenuBackgroundColor = Colors.black.obs;
+  final Rx<Color> _darkMenuBackgroundColor = Color(0xff333951).obs;
   Color get darkMenuBackgroundColor => this._darkMenuBackgroundColor.value;
   set darkMenuBackgroundColor(value) =>
       this._darkMenuBackgroundColor.value = value;
@@ -113,6 +127,13 @@ class MirayesThemeController extends GetxController {
       ? lightBodyBackgroundColor
       : darkBodyBackgroundColor;
   set bodyBackgroundColor(value) => this._bodyBackgroundColor.value = value;
+
+  /// FINAL - BODY BACKGROUND 02 COLOR
+  final Rx<Color> _bodyBackground02Color = Colors.grey.shade900.obs;
+  Color get bodyBackground02Color => brightness == Brightness.light
+      ? lightBodyBackground02Color
+      : darkBodyBackground02Color;
+  set bodyBackground02Color(value) => this._bodyBackground02Color.value = value;
 
   /// FINAL - TEXT BODY 01 COLOR
   final Rx<Color> _bodyText01Color = Colors.indigo.shade700.obs;
@@ -170,8 +191,7 @@ class MirayesThemeController extends GetxController {
   get themeData => this._themeData.value;
   set themeData(value) => this._themeData.value = value;
 
-  @override
-  void onInit() {
+  void setThemeData() {
     themeData = ThemeData(
       brightness: brightness,
       primaryColor: primaryColor,
@@ -205,6 +225,11 @@ class MirayesThemeController extends GetxController {
       ),
       canvasColor: menuBackgroundColor,
     );
+  }
+
+  @override
+  void onInit() {
+    setThemeData();
     super.onInit();
   }
 
@@ -212,5 +237,11 @@ class MirayesThemeController extends GetxController {
     if (!wasInit) {
       wasInit = true;
     }
+  }
+
+  void toggleBrightness() {
+    brightness =
+        brightness == Brightness.light ? Brightness.dark : Brightness.light;
+    setThemeData();
   }
 }

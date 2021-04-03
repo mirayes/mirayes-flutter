@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
+import 'package:mirayes_flutter/utils/theme_util.dart';
 
 class RightSideContainer extends StatefulWidget {
+  final MirayesThemeController themeController;
+
+  const RightSideContainer({Key? key, required this.themeController})
+      : super(key: key);
+
   @override
   _RightSideContainerState createState() => _RightSideContainerState();
 }
@@ -15,7 +21,15 @@ class _RightSideContainerState extends State<RightSideContainer> {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        color: Color(0xffF7F7FF),
+        decoration: BoxDecoration(
+          color: widget.themeController.bodyBackground02Color,
+          // border: Border(
+          //   left: BorderSide(
+          //     color: widget.themeController.bodyText01Color.withOpacity(0.1),
+          //   ),
+          // ),
+        ),
+        // color: widget.themeController.bodyBackground02Color,
         height: MediaQuery.of(context).size.height,
         width: controller.calcWidthRightSideContainer(context),
         child: Stack(
@@ -37,19 +51,24 @@ class _RightSideContainerState extends State<RightSideContainer> {
                   bottom: 10,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: widget.themeController.bodyBackgroundColor,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(40),
                     bottomRight: Radius.circular(40),
                   ),
                 ),
-                child: IconButton(
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(
+                      color: Colors.transparent,
+                    ),
+                  ),
                   onPressed: () {
                     controller.toggleRightSideOpened();
                   },
-                  icon: Icon(
+                  child: Icon(
                     Icons.arrow_right_rounded,
-                    color: Colors.grey,
+                    color: widget.themeController.bodyText01Color,
                   ),
                 ),
               ),

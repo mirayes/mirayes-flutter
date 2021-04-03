@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mirayes_flutter/mirayes_flutter.dart';
 
 import 'companyName_widget.dart';
@@ -37,7 +38,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: 100.0,
-        color: widget.themeController.primaryColor,
+        color: widget.themeController.menuBackgroundColor,
         child: Stack(
           children: [
             CompanyNameWidget(),
@@ -56,7 +57,9 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
               alignment: Alignment.bottomCenter,
               child: NavBarItem(
                 icon: Icons.settings,
-                touched: () {},
+                touched: () {
+                  widget.themeController.toggleBrightness();
+                },
                 active: false,
               ),
             ),

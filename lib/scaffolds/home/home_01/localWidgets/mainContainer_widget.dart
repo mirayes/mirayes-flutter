@@ -11,6 +11,7 @@ class MainContainer extends StatefulWidget {
   final int currentIndex;
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
+  final MirayesThemeController themeController;
 
   const MainContainer({
     Key? key,
@@ -20,6 +21,7 @@ class MainContainer extends StatefulWidget {
     required this.currentIndex,
     required this.destinations,
     required this.onNavigationIndexChange,
+    required this.themeController,
   }) : super(key: key);
 
   @override
@@ -36,7 +38,7 @@ class _MainContainerState extends State<MainContainer> {
       child: Container(
         height: MediaQuery.of(context).size.height,
         width: controller.calcWidthMainContainer(context),
-        color: Colors.white,
+        color: widget.themeController.bodyBackgroundColor,
         child: Stack(
           children: [
             if (!controller.rightSideOpened)
@@ -49,7 +51,7 @@ class _MainContainerState extends State<MainContainer> {
                     bottom: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: Color(0xff333951),
+                    color: widget.themeController.menuBackgroundColor,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       bottomLeft: Radius.circular(40),
