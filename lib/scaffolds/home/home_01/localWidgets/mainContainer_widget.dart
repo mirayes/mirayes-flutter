@@ -5,23 +5,13 @@ import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
 import 'package:mirayes_flutter/utils/menus_util.dart';
 
 class MainContainer extends StatefulWidget {
-  final Widget title;
-  final Widget screenPage;
-  final List<Widget> actions;
-  final int currentIndex;
-  final List<AdaptiveScaffoldDestination> destinations;
-  final ValueChanged<int> onNavigationIndexChange;
   final MirayesThemeController themeController;
+  final MirayesMenusController menuController;
 
   const MainContainer({
     Key? key,
-    required this.screenPage,
-    this.actions = const [],
-    this.title = const Text(''),
-    required this.currentIndex,
-    required this.destinations,
-    required this.onNavigationIndexChange,
     required this.themeController,
+    required this.menuController,
   }) : super(key: key);
 
   @override
@@ -73,7 +63,7 @@ class _MainContainerState extends State<MainContainer> {
               children: [
                 Container(
                   width: double.infinity,
-                  child: widget.screenPage,
+                  child: widget.menuController.destinoAtual.body,
                 ),
               ],
             ),

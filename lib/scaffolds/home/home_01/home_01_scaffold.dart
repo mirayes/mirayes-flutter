@@ -8,23 +8,11 @@ import 'localWidgets/navigationBar_widget.dart';
 import 'localWidgets/rightSideContainer_widget.dart';
 
 class MirayesHomeScaffold01 extends StatefulWidget {
-  final Widget title;
-  final Widget screenPage;
-  final List<Widget> actions;
-  final int currentIndex;
-  final List<AdaptiveScaffoldDestination> destinations;
-  final ValueChanged<int> onNavigationIndexChange;
   final MirayesThemeController themeController;
   final MirayesMenusController menuController;
 
   const MirayesHomeScaffold01({
     Key? key,
-    required this.screenPage,
-    this.actions = const [],
-    this.title = const Text(''),
-    required this.currentIndex,
-    required this.destinations,
-    required this.onNavigationIndexChange,
     required this.themeController,
     required this.menuController,
   }) : super(key: key);
@@ -50,23 +38,12 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
             child: Stack(
               children: [
                 NavigationBarWidget(
-                  screenPage: widget.screenPage,
-                  actions: widget.actions,
-                  currentIndex: widget.currentIndex,
-                  destinations: widget.destinations,
-                  onNavigationIndexChange: widget.onNavigationIndexChange,
-                  title: widget.title,
                   themeController: widget.themeController,
                   menuController: widget.menuController,
                 ),
                 MainContainer(
-                  screenPage: widget.screenPage,
-                  actions: widget.actions,
-                  currentIndex: widget.currentIndex,
-                  destinations: widget.destinations,
-                  onNavigationIndexChange: widget.onNavigationIndexChange,
-                  title: widget.title,
                   themeController: widget.themeController,
+                  menuController: widget.menuController,
                 ),
                 if (controller.rightSideOpened)
                   RightSideContainer(

@@ -6,23 +6,11 @@ import 'navBarItem_widget.dart';
 import 'navBar_widget.dart';
 
 class NavigationBarWidget extends StatefulWidget {
-  final Widget title;
-  final Widget screenPage;
-  final List<Widget> actions;
-  final int currentIndex;
-  final List<AdaptiveScaffoldDestination> destinations;
-  final ValueChanged<int> onNavigationIndexChange;
   final MirayesThemeController themeController;
   final MirayesMenusController menuController;
 
   const NavigationBarWidget({
     Key? key,
-    required this.screenPage,
-    this.actions = const [],
-    this.title = const Text(''),
-    required this.currentIndex,
-    required this.destinations,
-    required this.onNavigationIndexChange,
     required this.themeController,
     required this.menuController,
   }) : super(key: key);
@@ -46,12 +34,6 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
             Align(
               alignment: Alignment.center,
               child: NavBar(
-                screenPage: widget.screenPage,
-                actions: widget.actions,
-                currentIndex: widget.currentIndex,
-                destinations: widget.destinations,
-                onNavigationIndexChange: widget.onNavigationIndexChange,
-                title: widget.title,
                 menuController: widget.menuController,
               ),
             ),

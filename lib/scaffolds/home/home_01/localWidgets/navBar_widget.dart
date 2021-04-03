@@ -4,22 +4,10 @@ import 'package:mirayes_flutter/utils/menus_util.dart';
 import 'navBarItem_widget.dart';
 
 class NavBar extends StatefulWidget {
-  final Widget title;
-  final Widget screenPage;
-  final List<Widget> actions;
-  final int currentIndex;
-  final List<AdaptiveScaffoldDestination> destinations;
-  final ValueChanged<int> onNavigationIndexChange;
   final MirayesMenusController menuController;
 
   const NavBar({
     Key? key,
-    required this.screenPage,
-    this.actions = const [],
-    this.title = const Text(''),
-    required this.currentIndex,
-    required this.destinations,
-    required this.onNavigationIndexChange,
     required this.menuController,
   }) : super(key: key);
 
@@ -28,18 +16,6 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  List<bool> selected = [true, false, false, false, false];
-
-  void select(int n) {
-    for (int i = 0; i < 5; i++) {
-      if (i != n) {
-        selected[i] = false;
-      } else {
-        selected[i] = true;
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     int getIndex(AdaptiveScaffoldDestination d) {

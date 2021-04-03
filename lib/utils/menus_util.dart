@@ -15,10 +15,24 @@ class AdaptiveScaffoldDestination {
     required this.route,
     required this.body,
   });
+
+  static AdaptiveScaffoldDestination toDTO() {
+    return AdaptiveScaffoldDestination(
+      menuTitle: '',
+      pageTitle: '',
+      icon: Icons.ac_unit,
+      route: '',
+      body: Container(),
+    );
+  }
 }
 
 class MirayesMenusController extends GetxController {
   List<AdaptiveScaffoldDestination> get destinations => [];
+
+  final _destinoAtual = AdaptiveScaffoldDestination.toDTO().obs;
+  AdaptiveScaffoldDestination get destinoAtual => this._destinoAtual.value;
+  set destinoAtual(value) => this._destinoAtual.value = value;
 
   final _wasInit = false.obs;
   get wasInit => this._wasInit.value;
@@ -29,22 +43,20 @@ class MirayesMenusController extends GetxController {
   set pageIndex(value) => this._pageIndex.value = value;
 
   void controllerInit(BuildContext context) {
-    if (!wasInit) {
-      wasInit = true;
-      String currentRouteName = ModalRoute.of(context)!.settings.name!;
-      if (currentRouteName.isNotEmpty) {
-        AdaptiveScaffoldDestination destinoAtual = destinations
-            .firstWhere((element) => element.route == currentRouteName);
+    wasInit = true;
+    String currentRouteName = ModalRoute.of(context)!.settings.name!;
+    if (currentRouteName.isNotEmpty) {
+      AdaptiveScaffoldDestination __destinoAtual = destinations
+          .firstWhere((element) => element.route == currentRouteName);
 
-        int index = 0;
-        destinations.forEach((element) {
-          if (element.route == destinoAtual.route) {
-            pageIndex = index;
-          }
-          index++;
-        });
-      }
-      print('pageIndex $pageIndex');
+      int index = 0;
+      destinations.forEach((element) {
+        if (element.route == __destinoAtual.route) {
+          pageIndex = index;
+          destinoAtual = getByIndex(pageIndex);
+        }
+        index++;
+      });
     }
   }
 
@@ -65,6 +77,10 @@ class MirayesMenusController extends GetxController {
       }
     });
     return destinofinal.body;
+  }
+
+  AdaptiveScaffoldDestination getByIndex(int pageIndex) {
+    return destinations[pageIndex];
   }
 
   void goToMenu(int index) async {
