@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:mirayes_flutter/mirayes_flutter.dart';
 
 import 'companyName_widget.dart';
@@ -14,6 +13,7 @@ class NavigationBarWidget extends StatefulWidget {
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
   final MirayesThemeController themeController;
+  final MirayesMenusController menuController;
 
   const NavigationBarWidget({
     Key? key,
@@ -24,6 +24,7 @@ class NavigationBarWidget extends StatefulWidget {
     required this.destinations,
     required this.onNavigationIndexChange,
     required this.themeController,
+    required this.menuController,
   }) : super(key: key);
 
   @override
@@ -51,6 +52,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
                 destinations: widget.destinations,
                 onNavigationIndexChange: widget.onNavigationIndexChange,
                 title: widget.title,
+                menuController: widget.menuController,
               ),
             ),
             Align(

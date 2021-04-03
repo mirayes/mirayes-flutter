@@ -13,6 +13,7 @@ dependencies:
   get: 4.1.1
   flutter_vector_icons:
   google_fonts:
+  shimmer:
 
 dev_dependencies:
   flutter_test:

@@ -44,6 +44,7 @@ class MirayesMenusController extends GetxController {
           index++;
         });
       }
+      print('pageIndex $pageIndex');
     }
   }
 

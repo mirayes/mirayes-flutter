@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
 import 'package:mirayes_flutter/utils/theme_util.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RightSideContainer extends StatefulWidget {
   final MirayesThemeController themeController;
@@ -38,7 +39,7 @@ class _RightSideContainerState extends State<RightSideContainer> {
               children: [
                 Container(
                   width: double.infinity,
-                  child: Text(''),
+                  child: RightContent(),
                 ),
               ],
             ),
@@ -76,6 +77,19 @@ class _RightSideContainerState extends State<RightSideContainer> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RightContent extends StatelessWidget {
+  const RightContent({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [],
     );
   }
 }

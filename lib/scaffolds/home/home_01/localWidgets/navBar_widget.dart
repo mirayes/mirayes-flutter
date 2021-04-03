@@ -10,6 +10,7 @@ class NavBar extends StatefulWidget {
   final int currentIndex;
   final List<AdaptiveScaffoldDestination> destinations;
   final ValueChanged<int> onNavigationIndexChange;
+  final MirayesMenusController menuController;
 
   const NavBar({
     Key? key,
@@ -19,6 +20,7 @@ class NavBar extends StatefulWidget {
     required this.currentIndex,
     required this.destinations,
     required this.onNavigationIndexChange,
+    required this.menuController,
   }) : super(key: key);
 
   @override
@@ -40,14 +42,27 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
+    int getIndex(AdaptiveScaffoldDestination d) {
+      int retorno = 0;
+      int indexLoop = 0;
+      widget.menuController.destinations.forEach((destino) {
+        if (destino.route == d.route) retorno = indexLoop;
+        indexLoop++;
+      });
+      return retorno;
+    }
+
     bool _isSelected(AdaptiveScaffoldDestination d) {
-      return widget.destinations.indexOf(d) == widget.currentIndex;
+      int indexOfWidget = getIndex(d);
+      int indexAtual = widget.menuController.pageIndex;
+      bool saoIguais = indexOfWidget == indexAtual;
+      return saoIguais;
     }
 
     void _destinationTapped(AdaptiveScaffoldDestination destination) {
-      var idx = widget.destinations.indexOf(destination);
-      if (idx != widget.currentIndex) {
-        widget.onNavigationIndexChange(idx);
+      var idx = getIndex(destination);
+      if (idx != widget.menuController.pageIndex) {
+        widget.menuController.onNavigationIndexChange(idx);
       }
     }
 
@@ -55,7 +70,7 @@ class _NavBarState extends State<NavBar> {
       height: 350.0,
       child: Column(
         children: [
-          for (var destination in widget.destinations)
+          for (var destination in widget.menuController.destinations)
             NavBarItem(
               icon: destination.icon,
               touched: () {
