@@ -14,6 +14,7 @@ dependencies:
   flutter_vector_icons:
   google_fonts:
   shimmer:
+  responsive_framework:
 
 dev_dependencies:
   flutter_test:
