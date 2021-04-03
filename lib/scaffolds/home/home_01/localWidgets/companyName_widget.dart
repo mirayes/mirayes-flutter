@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// TODO: Tornar título dinâmico
+// BODY: deve aceitar imagens ou textos
+
 class CompanyNameWidget extends StatelessWidget {
   const CompanyNameWidget({
     Key? key,
