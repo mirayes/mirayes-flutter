@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
 import 'package:mirayes_flutter/utils/theme_util.dart';
-import 'package:shimmer/shimmer.dart';
 
 class RightSideContainer extends StatefulWidget {
   final MirayesThemeController themeController;

@@ -17,7 +17,7 @@ class CompanyNameWidget extends StatelessWidget {
               width: 100,
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                'Advogados APP',
+                'Advogados APP', // TODO: Tornar dinâmico
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(

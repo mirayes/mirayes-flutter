@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mirayes_flutter/mirayes_flutter.dart';
 
 class MirayesThemeController extends GetxController {
@@ -212,8 +213,12 @@ class MirayesThemeController extends GetxController {
         headline4: TextStyle(color: bodyText01Color),
         headline5: TextStyle(color: bodyText01Color),
         headline6: TextStyle(color: bodyText01Color),
-        bodyText1: TextStyle(color: bodyText01Color),
-        bodyText2: TextStyle(color: bodyText01Color),
+        bodyText1: GoogleFonts.openSans(
+          color: bodyText01Color,
+        ),
+        bodyText2: GoogleFonts.openSans(
+          color: bodyText01Color,
+        ),
         subtitle1: TextStyle(color: bodyText01Color),
         subtitle2: TextStyle(color: bodyText01Color),
         button: TextStyle(color: bodyText01Color),
