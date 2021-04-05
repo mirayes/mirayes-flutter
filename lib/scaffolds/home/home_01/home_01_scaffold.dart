@@ -26,7 +26,7 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
 
   @override
   Widget build(BuildContext context) {
-    controller.home01ControllerInit(context);
+    controller.home01ControllerInit(context, widget.menuController);
     widget.themeController.init(context);
 
     return Obx(
@@ -45,11 +45,12 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
                   themeController: widget.themeController,
                   menuController: widget.menuController,
                 ),
-                if (controller.rightSideOpened)
-                  RightSideContainer(
-                    themeController: widget.themeController,
-                    menusController: widget.menuController,
-                  ),
+                controller.rightSideOpened
+                    ? RightSideContainer(
+                        themeController: widget.themeController,
+                        menusController: widget.menuController,
+                      )
+                    : Container(),
               ],
             ),
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+class AdaptiveScaffoldDestinationEmpty extends Container {}
+
 class AdaptiveScaffoldDestination {
   final String menuTitle;
   final String pageTitle;
@@ -30,7 +32,7 @@ class AdaptiveScaffoldDestination {
   }
 
   static emptyWidget() {
-    return Container();
+    return AdaptiveScaffoldDestinationEmpty();
   }
 }
 
@@ -66,6 +68,9 @@ class MirayesMenusController extends GetxController {
       });
     }
   }
+
+  bool get hasSideBar =>
+      !(destinoAtual.rightBar is AdaptiveScaffoldDestinationEmpty);
 
   void onNavigationIndexChange(value) {
     pageIndex = value;

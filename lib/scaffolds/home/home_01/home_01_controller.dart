@@ -16,9 +16,15 @@ class Home01Controller extends GetxController {
     super.onInit();
   }
 
-  void home01ControllerInit(BuildContext context) {
-    if (!wasInit) {
-      wasInit = true;
+  void home01ControllerInit(
+    BuildContext context,
+    MirayesMenusController menuController,
+  ) async {
+    if (!menuController.hasSideBar) {
+      await Future.delayed(Duration(milliseconds: 0));
+      rightSideOpened = false;
+    } else {
+      await Future.delayed(Duration(milliseconds: 0));
       rightSideOpened = !Responsive.isMobile(context);
     }
   }

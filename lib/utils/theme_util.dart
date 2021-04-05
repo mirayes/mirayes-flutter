@@ -71,7 +71,7 @@ class MirayesThemeController extends GetxController {
   set darkPrimaryColor(value) => this._darkPrimaryColor.value = value;
 
   /// DARK - ACCENT COLOR
-  final Rx<Color> _darkAccentColor = Colors.grey.shade500.obs;
+  final Rx<Color> _darkAccentColor = Color(0xff333951).obs;
   Color get darkAccentColor => this._darkAccentColor.value;
   set darkAccentColor(value) => this._darkAccentColor.value = value;
 
@@ -229,6 +229,9 @@ class MirayesThemeController extends GetxController {
         backgroundColor: headerBackgroundColor,
       ),
       canvasColor: menuBackgroundColor,
+      cardTheme: CardTheme(
+        color: bodyBackgroundColor,
+      ),
     );
   }
 
