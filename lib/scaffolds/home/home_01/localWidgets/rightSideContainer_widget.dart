@@ -93,9 +93,14 @@ class RightContent extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: TableCalendar(
+            locale: 'pt_BR',
             firstDay: DateTime.utc(2010, 10, 16),
             lastDay: DateTime.utc(2030, 3, 14),
             focusedDay: DateTime.now(),
+            headerStyle: HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+            ),
             calendarStyle: CalendarStyle(
               selectedDecoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
