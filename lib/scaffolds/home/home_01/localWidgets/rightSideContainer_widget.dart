@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
 import 'package:mirayes_flutter/utils/theme_util.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class RightSideContainer extends StatefulWidget {
   final MirayesThemeController themeController;
@@ -88,7 +89,25 @@ class RightContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [],
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: TableCalendar(
+            firstDay: DateTime.utc(2010, 10, 16),
+            lastDay: DateTime.utc(2030, 3, 14),
+            focusedDay: DateTime.now(),
+            calendarStyle: CalendarStyle(
+              selectedDecoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              todayDecoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
