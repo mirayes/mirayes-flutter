@@ -24,7 +24,7 @@ class MirayesThemeController extends GetxController {
   set lightPrimaryColor(value) => this._lightPrimaryColor.value = value;
 
   /// LIGHT - ACCENT COLOR
-  final Rx<Color> _lightAccentColor = Color(0xff333951).obs;
+  final Rx<Color> _lightAccentColor = Color(0xff626882).obs;
   Color get lightAccentColor => this._lightAccentColor.value;
   set lightAccentColor(value) => this._lightAccentColor.value = value;
 

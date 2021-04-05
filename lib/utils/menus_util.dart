@@ -7,6 +7,7 @@ class AdaptiveScaffoldDestination {
   final IconData icon;
   final String route;
   final Widget body;
+  final Widget rightBar;
 
   const AdaptiveScaffoldDestination({
     required this.menuTitle,
@@ -14,6 +15,7 @@ class AdaptiveScaffoldDestination {
     required this.icon,
     required this.route,
     required this.body,
+    required this.rightBar,
   });
 
   static AdaptiveScaffoldDestination toDTO() {
@@ -22,8 +24,13 @@ class AdaptiveScaffoldDestination {
       pageTitle: '',
       icon: Icons.ac_unit,
       route: '',
-      body: Container(),
+      body: AdaptiveScaffoldDestination.emptyWidget(),
+      rightBar: AdaptiveScaffoldDestination.emptyWidget(),
     );
+  }
+
+  static emptyWidget() {
+    return Container();
   }
 }
 

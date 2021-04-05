@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mirayes_flutter/mirayes_flutter.dart';
 import 'package:mirayes_flutter/scaffolds/home/home_01/home_01_controller.dart';
 import 'package:mirayes_flutter/utils/theme_util.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class RightSideContainer extends StatefulWidget {
   final MirayesThemeController themeController;
+  final MirayesMenusController menusController;
 
-  const RightSideContainer({Key? key, required this.themeController})
-      : super(key: key);
+  const RightSideContainer({
+    Key? key,
+    required this.themeController,
+    required this.menusController,
+  }) : super(key: key);
 
   @override
   _RightSideContainerState createState() => _RightSideContainerState();
@@ -24,11 +28,6 @@ class _RightSideContainerState extends State<RightSideContainer> {
       child: Container(
         decoration: BoxDecoration(
           color: widget.themeController.bodyBackground02Color,
-          // border: Border(
-          //   left: BorderSide(
-          //     color: widget.themeController.bodyText01Color.withOpacity(0.1),
-          //   ),
-          // ),
         ),
         // color: widget.themeController.bodyBackground02Color,
         height: MediaQuery.of(context).size.height,
@@ -39,7 +38,7 @@ class _RightSideContainerState extends State<RightSideContainer> {
               children: [
                 Container(
                   width: double.infinity,
-                  child: RightContent(),
+                  child: widget.menusController.destinoAtual.rightBar,
                 ),
               ],
             ),
@@ -77,42 +76,6 @@ class _RightSideContainerState extends State<RightSideContainer> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class RightContent extends StatelessWidget {
-  const RightContent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: TableCalendar(
-            locale: 'pt_BR',
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.utc(2030, 3, 14),
-            focusedDay: DateTime.now(),
-            headerStyle: HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-            ),
-            calendarStyle: CalendarStyle(
-              selectedDecoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
-              todayDecoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

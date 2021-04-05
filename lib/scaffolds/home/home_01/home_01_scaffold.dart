@@ -48,6 +48,7 @@ class _MirayesHomeScaffold01State extends State<MirayesHomeScaffold01> {
                 if (controller.rightSideOpened)
                   RightSideContainer(
                     themeController: widget.themeController,
+                    menusController: widget.menuController,
                   ),
               ],
             ),
