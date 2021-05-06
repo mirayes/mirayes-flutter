@@ -24,6 +24,8 @@
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
+./.dart_tool/*
+./dart_tool/version
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
@@ -31,6 +33,7 @@
 .pub/
 /build/
 /android/app/google-services.json
+**dart_tool**
 
 # Web related
 lib/generated_plugin_registrant.dart
